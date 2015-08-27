@@ -22,6 +22,18 @@
         });
         return maskList;
     }
+    $.masksLoadAsync = function(url,callback) {
+        if ((typeof callback) === 'function') {
+            $.ajax({
+                url: url,
+                async: true,
+                dataType: 'json',
+                success: function (response) {
+                    callback(response);
+                }
+            });
+        }
+    }
 
     $.masksSort = function(maskList, defs, match, key) {
         maskList.sort(function (a, b) {
